@@ -15,8 +15,7 @@ public class Tracker {
 
     public Item findById(int id) {
         int index = indexOf(id);
-        Item item = items[index];
-        return index != -1 ? item : null;
+        return index != -1 ? items[index] : null;
     }
 
     public Item[] findByName(String key) {
@@ -49,6 +48,18 @@ public class Tracker {
     public Boolean replace(int id, Item item) {
         if (indexOf(id) >= 0) {
             items[indexOf(id)].setName(item.getName());
+            return true;
+        }
+        return false;
+    }
+
+    public Boolean delete(int id) {
+        int index = indexOf(id);
+        if (index >= 0) {
+            items[index] = null;
+            System.arraycopy(items, index + 1, items, index, size - index - 1);
+            items[size - 1] = null;
+            size--;
             return true;
         }
         return false;
