@@ -3,7 +3,7 @@ package ru.job4j.poly;
 public class Bus implements Transport, Vehicle {
     @Override
     public void go() {
-        this.go();
+        System.out.println("Автобус едет");
     }
 
     @Override
