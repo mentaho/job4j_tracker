@@ -1,6 +1,11 @@
 package ru.job4j.tracker;
 
 public class TerminateAction implements UserAction {
+    private final Output out;
+
+    public TerminateAction(Output out) {
+        this.out = out;
+    }
 
     @Override
     public String name() {
@@ -9,7 +14,7 @@ public class TerminateAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        System.out.println("The program has been terminated.");
+        //out.println("The program has been terminated.");
         return false;
     }
 }
