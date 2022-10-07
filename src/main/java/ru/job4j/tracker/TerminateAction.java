@@ -9,12 +9,12 @@ public class TerminateAction implements UserAction {
 
     @Override
     public String name() {
-        return "Exit";
+        return "Exit Program";
     }
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        //out.println("The program has been terminated.");
+        out.println("The program has been terminated.");
         return false;
     }
 }
