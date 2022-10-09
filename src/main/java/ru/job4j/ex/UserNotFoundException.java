@@ -1,5 +1,7 @@
 package ru.job4j.ex;
 
-public class UserNotFoundException extends Exception{
-    public UserNotFoundException(String messsage){super(messsage);}
+public class UserNotFoundException extends Exception {
+    public UserNotFoundException(String messsage) {
+        super(messsage);
+    }
 }
