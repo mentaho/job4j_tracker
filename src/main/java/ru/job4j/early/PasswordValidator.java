@@ -1,13 +1,10 @@
 package ru.job4j.early;
 
 public class PasswordValidator {
-    private static String qwerty = "qwerty";
-    private static String pass = "password";
-    private static String admin = "admin";
-    private static String user = "user";
-    private static String onetwothree = "12345";
 
     public static String validate(String password) {
+
+        String[] commonPasswords = new String[]{"qwerty", "password", "admin", "user", "12345"};
 
         if (password == null) {
             throw new IllegalArgumentException("The password is empty");
@@ -27,11 +24,7 @@ public class PasswordValidator {
         if (!testSpecialSymbol(password)) {
             throw new IllegalArgumentException("Need one special symbol");
         }
-        if (password.toLowerCase().contains(qwerty)
-                || password.toLowerCase().contains(pass)
-                || password.toLowerCase().contains(admin)
-                || password.toLowerCase().contains(user)
-                || password.contains(onetwothree)) {
+        if (testCommonPasswords(commonPasswords, password)) {
             throw new IllegalArgumentException("Use non common phrases");
         }
 
@@ -68,6 +61,15 @@ public class PasswordValidator {
     private static boolean testSpecialSymbol(String passwordForTest) {
         for (char symbol : passwordForTest.toCharArray()) {
             if (!Character.isLetterOrDigit(symbol) && !Character.isWhitespace(symbol)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean testCommonPasswords(String[] array, String passwordForTest) {
+        for (String commonPassword : array) {
+            if (passwordForTest.toLowerCase().contains(commonPassword)) {
                 return true;
             }
         }
