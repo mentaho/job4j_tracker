@@ -20,6 +20,7 @@ public class PhoneDictionaryTest {
     @Test
     public void whenDoesNotFind() {
         PhoneDictionary phones = new PhoneDictionary();
+        phones.add(new Person("Ivan", "Ivanov", "12345", "Moscow"));
         ArrayList<Person> persons = phones.find("Petr");
         assertThat(persons).isEmpty();
     }
