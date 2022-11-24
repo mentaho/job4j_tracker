@@ -5,12 +5,9 @@ import java.util.List;
 
 public class Tracker {
     private List<Item> items = new ArrayList<>();
-    private int ids = 1;
-//    private int size = 0;
 
     public Item add(Item item) {
         items.add(item);
-        ids++;
         return item;
     }
 
@@ -20,12 +17,10 @@ public class Tracker {
     }
 
     public List<Item> findByName(String key) {
-        //int count = 0;
         List<Item> rsl = new ArrayList<>();
         for (int index = 0; index < items.size(); index++) {
             if (key.equals(items.get(index).getName())) {
                 rsl.add(items.get(index));
-                //      count++;
             }
         }
         return rsl;
@@ -51,7 +46,7 @@ public class Tracker {
         boolean rsl = index != -1;
         if (rsl) {
             items.remove(index);
-                    }
+        }
         return rsl;
     }
 
