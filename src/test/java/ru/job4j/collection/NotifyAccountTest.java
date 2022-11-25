@@ -46,6 +46,7 @@ class NotifyAccountTest {
         expect.add(new Account("142", "Petr Arsentev", "eDer3432f"));
         assertThat(NotifyAccount.sent(accounts)).containsAll(expect);
     }
+
     @Test
     public void whenAddTooMuchDuplicateAccounts() {
         List<Account> accounts = Arrays.asList(
@@ -53,12 +54,16 @@ class NotifyAccountTest {
                 new Account("142", "Petr Arsentev", "eDer3432f"),
                 new Account("123", "Ivan Ivanov", "000000001"),
                 new Account("142", "Petr Petrov", "000000002"),
-                new Account("123", "Mark Markov", "000000003"),
-                new Account("123", "Mark Petrov", "000000003")
+                new Account("123", "Mark Markov", "000000003")
         );
         HashSet<Account> expect = new HashSet<>();
-        expect.add(new Account("123", "Mark Petrov", "eDer3432f"));
-        expect.add(new Account("142", "Petr Arsentev", "eDer3432f"));
+     /*   for (Account ac : NotifyAccount.sent(accounts)
+        ) {
+            System.out.println(ac);
+        }*/
+        expect.add(new Account("123", "Ivan Ivanov", "000000001"));
+        expect.add(new Account("142", "Petr Petrov", "000000002"));
+        expect.add(new Account("142", "Petr Petrov", "000000002"));
         assertThat(NotifyAccount.sent(accounts)).containsAll(expect);
     }
 }
