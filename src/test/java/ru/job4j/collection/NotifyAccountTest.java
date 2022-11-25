@@ -56,14 +56,6 @@ class NotifyAccountTest {
                 new Account("142", "Petr Petrov", "000000002"),
                 new Account("123", "Mark Markov", "000000003")
         );
-        HashSet<Account> expect = new HashSet<>();
-     /*   for (Account ac : NotifyAccount.sent(accounts)
-        ) {
-            System.out.println(ac);
-        }*/
-        expect.add(new Account("123", "Ivan Ivanov", "000000001"));
-        expect.add(new Account("142", "Petr Petrov", "000000002"));
-        expect.add(new Account("142", "Petr Petrov", "000000002"));
-        assertThat(NotifyAccount.sent(accounts)).containsAll(expect);
+        assertThat(NotifyAccount.sent(accounts)).size().isEqualTo(2);
     }
 }
