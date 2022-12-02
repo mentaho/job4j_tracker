@@ -1,8 +1,6 @@
 package ru.job4j.map;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class AnalyzeByMap {
     public static double averageScore(List<Pupil> pupils) {
@@ -33,16 +31,17 @@ public class AnalyzeByMap {
     }
 
     public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
+        Map<String, Integer> map = new LinkedHashMap<>();
         List<Label> labelList = new ArrayList<>();
-        double sum = 0D;
-        double average;
-        for (int i = 0; i < pupils.get(0).subjects().size(); i++) {
-            for (Pupil pupil : pupils) {
-                sum += pupil.subjects().get(i).score();
+        Integer sum;
+        for (Pupil pupil : pupils) {
+            for (Subject subjects : pupil.subjects()) {
+                sum = map.getOrDefault(subjects.name(), 0);
+                map.put(subjects.name(), sum + subjects.score());
             }
-            average = sum / pupils.get(0).subjects().size();
-            labelList.add(new Label(pupils.get(0).subjects().get(i).name(), average));
-            sum = 0;
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            labelList.add(new Label(entry.getKey(), entry.getValue() / pupils.size()));
         }
         return labelList;
     }
@@ -61,14 +60,17 @@ public class AnalyzeByMap {
     }
 
     public static Label bestSubject(List<Pupil> pupils) {
+        Map<String, Integer> map = new LinkedHashMap<>();
         List<Label> labelList = new ArrayList<>();
-        double sum = 0;
-        for (int i = 0; i < pupils.get(0).subjects().size(); i++) {
-            for (Pupil pupil : pupils) {
-                sum += pupil.subjects().get(i).score();
+        Integer sum;
+        for (Pupil pupil : pupils) {
+            for (Subject subjects : pupil.subjects()) {
+                sum = map.getOrDefault(subjects.name(), 0);
+                map.put(subjects.name(), sum + subjects.score());
             }
-            labelList.add(new Label(pupils.get(0).subjects().get(i).name(), sum));
-            sum = 0;
+        }
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            labelList.add(new Label(entry.getKey(), entry.getValue()));
         }
         labelList.sort(Comparator.naturalOrder());
         return labelList.get(labelList.size() - 1);
