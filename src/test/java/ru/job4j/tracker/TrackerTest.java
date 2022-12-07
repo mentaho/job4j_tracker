@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -77,5 +79,36 @@ public class TrackerTest {
         int id = bug.getId();
         tracker.delete(id);
         assertThat(tracker.findById(id)).isNull();
+    }
+
+    @Test
+    public void whenRegularOrder() {
+        List<Item> items = new ArrayList<>() {
+        };
+        items.add(new Item("Stone"));
+        items.add(new Item("Yellow"));
+        items.add(new Item("Ambient"));
+
+        List<Item> expected = new ArrayList<>();
+        expected.add(new Item("Ambient"));
+        expected.add(new Item("Stone"));
+        expected.add(new Item("Yellow"));
+        Collections.sort(items, new ItemAscByName());
+        assertThat(items).isEqualTo(expected);
+    }
+
+    @Test
+    public void whenReverseOrder() {
+        List<Item> items = new ArrayList<>() {
+        };
+        items.add(new Item("Stone"));
+        items.add(new Item("Ambient"));
+        items.add(new Item("Yellow"));
+        List<Item> expected = new ArrayList<>();
+        expected.add(new Item("Yellow"));
+        expected.add(new Item("Stone"));
+        expected.add(new Item("Ambient"));
+        Collections.sort(items, new ItemDescByName());
+        assertThat(items).isEqualTo(expected);
     }
 }
