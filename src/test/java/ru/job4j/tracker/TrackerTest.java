@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -83,31 +84,28 @@ public class TrackerTest {
 
     @Test
     public void whenRegularOrder() {
-        List<Item> items = new ArrayList<>() {
-        };
-        items.add(new Item("Stone"));
-        items.add(new Item("Yellow"));
-        items.add(new Item("Ambient"));
-
-        List<Item> expected = new ArrayList<>();
-        expected.add(new Item("Ambient"));
-        expected.add(new Item("Stone"));
-        expected.add(new Item("Yellow"));
+        List<Item> items = new ArrayList<>(Arrays.asList(
+                new Item("Stone"),
+                new Item("Yellow"),
+                new Item("Ambient")));
+        List<Item> expected = (Arrays.asList(
+                new Item("Ambient"),
+                new Item("Stone"),
+                new Item("Yellow")));
         Collections.sort(items, new ItemAscByName());
         assertThat(items).isEqualTo(expected);
     }
 
     @Test
     public void whenReverseOrder() {
-        List<Item> items = new ArrayList<>() {
-        };
-        items.add(new Item("Stone"));
-        items.add(new Item("Ambient"));
-        items.add(new Item("Yellow"));
-        List<Item> expected = new ArrayList<>();
-        expected.add(new Item("Yellow"));
-        expected.add(new Item("Stone"));
-        expected.add(new Item("Ambient"));
+        List<Item> items = new ArrayList<>(Arrays.asList(
+                new Item("Stone"),
+                new Item("Yellow"),
+                new Item("Ambient")));
+        List<Item> expected = (Arrays.asList(
+                new Item("Yellow"),
+                new Item("Stone"),
+                new Item("Ambient")));
         Collections.sort(items, new ItemDescByName());
         assertThat(items).isEqualTo(expected);
     }
