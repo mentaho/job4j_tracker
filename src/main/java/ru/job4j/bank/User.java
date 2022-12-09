@@ -2,8 +2,19 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс описывает поведение объекта User
+ * @author Aleksey Bubnov
+ * @version 1.0
+ */
 public class User {
+    /**
+     * Номер паспорта
+     */
     private String passport;
+    /**
+     * Имя
+     */
     private String username;
 
     public User(String passport, String username) {
@@ -11,6 +22,10 @@ public class User {
         this.username = username;
     }
 
+    /**
+     *
+     * @return возвращает паспорт
+     */
     public String getPassport() {
         return passport;
     }
@@ -27,6 +42,11 @@ public class User {
         this.username = username;
     }
 
+    /**
+     * Переопределяет equals что бы сравнивать User по номеру паспорта
+     * @param o сравниваемый объект
+     * @return возвращает true, если номера паспортов у пользователей совпали
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
