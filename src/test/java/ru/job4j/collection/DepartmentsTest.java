@@ -25,7 +25,7 @@ public class DepartmentsTest {
         assertThat(result).containsSequence(expect);
     }
 
-@Test
+    @Test
     public void whenMissedSomeDepartmentsCode() {
         List<String> input = Arrays.asList(
                 "K1/SK1/SSK1",
