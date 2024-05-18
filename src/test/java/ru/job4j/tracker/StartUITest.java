@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.jupiter.api.Test;
+import ru.job4j.tracker.action.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class StartUITest {
         );
         Tracker tracker = new Tracker();
         List<UserAction> actions = new ArrayList<>();
-        actions.add(new TerminateAction(out));
+        actions.add(new Terminate(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString()).isEqualTo(
                 "Menu:" + System.lineSeparator()
@@ -36,8 +37,8 @@ public class StartUITest {
                 new String[]{"0", String.valueOf(one.getId()), replaceName, "1"}
         );
         List<UserAction> actions = new ArrayList<>();
-        actions.add(new ReplaceAction(out));
-        actions.add(new TerminateAction(out));
+        actions.add(new Replace(out));
+        actions.add(new Terminate(out));
 
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
@@ -63,8 +64,8 @@ public class StartUITest {
                 new String[]{"0", "1"}
         );
         List<UserAction> actions = new ArrayList<>();
-        actions.add(new ShowAllAction(out));
-        actions.add(new TerminateAction(out));
+        actions.add(new ShowAll(out));
+        actions.add(new Terminate(out));
 
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
@@ -90,8 +91,8 @@ public class StartUITest {
                 new String[]{"0", one.getName(), "1"}
         );
         List<UserAction> actions = new ArrayList<>();
-        actions.add(new FindByNameAction(out));
-        actions.add(new TerminateAction(out));
+        actions.add(new FindByName(out));
+        actions.add(new Terminate(out));
 
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
@@ -117,8 +118,8 @@ public class StartUITest {
                 new String[]{"0", String.valueOf(one.getId()), "1"}
         );
         List<UserAction> actions = new ArrayList<>();
-        actions.add(new FindByIdAction(out));
-        actions.add(new TerminateAction(out));
+        actions.add(new FindById(out));
+        actions.add(new Terminate(out));
 
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
@@ -143,7 +144,7 @@ public class StartUITest {
         );
         Tracker tracker = new Tracker();
         List<UserAction> actions = new ArrayList<>();
-        actions.add(new TerminateAction(out));
+        actions.add(new Terminate(out));
 
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();

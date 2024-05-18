@@ -1,9 +1,13 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.action;
 
-public class TerminateAction implements UserAction {
+import ru.job4j.tracker.Input;
+import ru.job4j.tracker.Output;
+import ru.job4j.tracker.Tracker;
+
+public class Terminate implements UserAction {
     private final Output out;
 
-    public TerminateAction(Output out) {
+    public Terminate(Output out) {
         this.out = out;
     }
 
