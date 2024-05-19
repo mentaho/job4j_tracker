@@ -5,29 +5,25 @@ import ru.job4j.tracker.Item;
 import ru.job4j.tracker.Output;
 import ru.job4j.tracker.Tracker;
 
-public class Replace implements UserAction {
+public class CreateAction implements UserAction {
     private final Output out;
 
-    public Replace(Output out) {
+    public CreateAction(Output out) {
         this.out = out;
     }
 
     @Override
     public String name() {
-        return "Edit item";
+        return "Add new item";
     }
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        out.println("=== Edit item ===");
-        int id = input.askInt("Enter id:");
+        out.println("=== Create a new item ===");
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
-        if (tracker.replace(id, item)) {
-            out.println("Заявка изменена успешно.");
-        } else {
-            out.println("Ошибка замены заявки.");
-        }
+        tracker.add(item);
+        out.println("Добавленная заявка: " + item);
         return true;
     }
 }

@@ -4,10 +4,10 @@ import ru.job4j.tracker.Input;
 import ru.job4j.tracker.Output;
 import ru.job4j.tracker.Tracker;
 
-public class Terminate implements UserAction {
+public class TerminateAction implements UserAction {
     private final Output out;
 
-    public Terminate(Output out) {
+    public TerminateAction(Output out) {
         this.out = out;
     }
 
