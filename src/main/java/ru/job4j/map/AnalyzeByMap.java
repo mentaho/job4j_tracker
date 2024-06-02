@@ -36,13 +36,13 @@ public class AnalyzeByMap {
         Integer sum;
         for (Pupil pupil : pupils) {
             for (Subject subjects : pupil.subjects()) {
-                sum = map.getOrDefault(subjects.name(), 0);
-                map.put(subjects.name(), sum + subjects.score());
+                map.merge(subjects.name(), subjects.score(), (oldValue, newValue) -> oldValue + subjects.score());
             }
         }
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             labelList.add(new Label(entry.getKey(), entry.getValue() / pupils.size()));
         }
+
         return labelList;
     }
 
@@ -65,8 +65,7 @@ public class AnalyzeByMap {
         Integer sum;
         for (Pupil pupil : pupils) {
             for (Subject subjects : pupil.subjects()) {
-                sum = map.getOrDefault(subjects.name(), 0);
-                map.put(subjects.name(), sum + subjects.score());
+                map.merge(subjects.name(), subjects.score(), (oldValue, newValue) -> oldValue + subjects.score());
             }
         }
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
