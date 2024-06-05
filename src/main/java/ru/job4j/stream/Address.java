@@ -23,13 +23,6 @@ public class Address {
         return city;
     }
 
-    public static class SortedByCity implements Comparator<Address> {
-        @Override
-        public int compare(Address o1, Address o2) {
-            return o1.getCity().compareTo(o2.getCity());
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
